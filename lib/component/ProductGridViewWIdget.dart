@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework_2/pages/ProductDetailPage.dart';
 
 import '../vo/Product.dart';
 
@@ -14,47 +15,52 @@ class ProductGridViewWidget extends StatefulWidget {
 class _ProductGridViewWidgetState extends State<ProductGridViewWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
+    return GestureDetector(
+      onTap: (){
+        Get.to(()=>ProductDetailPAge(item:widget.item));
+      },
+      child: Container(
+        color: Colors.orange,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
 
-          AspectRatio(
-            aspectRatio: 1,
-              child: Image.network(widget.item.imagePath??"",fit: BoxFit.cover,)
-          ),
-          Positioned(
-            bottom: 10,
-            right: 0,
-            left: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+            AspectRatio(
+              aspectRatio: 1,
+                child: Image.network(widget.item.imagePath??"",fit: BoxFit.cover,)
+            ),
+            Positioned(
+              bottom: 10,
+              right: 0,
+              left: 0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Center(child: Text("${widget.item.price} 원")),
                     ),
-                    child: Center(child: Text("${widget.item.price} 원")),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Center(child: Text("${widget.item.name}")),
                     ),
-                    child: Center(child: Text("${widget.item.name}")),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
